@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+//还是android 13的蓝牙权限是画蛇添足， 还是需要精确地理位置
         val p_array = listOf<String>(
             Manifest.permission.BLUETOOTH_SCAN,
             Manifest.permission.BLUETOOTH,
