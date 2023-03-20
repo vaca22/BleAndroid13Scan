@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
             Manifest.permission.BLUETOOTH_ADMIN,
             Manifest.permission.BLUETOOTH_CONNECT,
             Manifest.permission.BLUETOOTH_ADVERTISE,
-            Manifest.permission.ACCESS_FINE_LOCATION,
         )
 
         val requestVoicePermission = registerForActivityResult(
@@ -85,9 +84,15 @@ class MainActivity : AppCompatActivity() {
             ) {
                 return
             }
-            scanner?.startScan(listOf(filter), settings, leScanCallback)
+            if(scanner==null){
+                Log.e("vacavaca", "scanner==null")
+                return
+            }
+            scanner.startScan(listOf(filter), settings, leScanCallback)
+            Log.e("vacavaca", "startScan")
         } catch (e: Exception) {
 
+            e.printStackTrace()
         }
 
     }
