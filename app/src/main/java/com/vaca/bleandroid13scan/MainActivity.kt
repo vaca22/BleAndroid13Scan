@@ -4,9 +4,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
-import android.bluetooth.le.ScanCallback
-import android.bluetooth.le.ScanResult
-import android.bluetooth.le.ScanSettings
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -14,10 +11,8 @@ import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 
@@ -89,8 +84,20 @@ class MainActivity : AppCompatActivity() {
                 if (device!!.name.isNullOrEmpty()) {
                     return
                 }
+                val deviceType = device.type
                 val derp = device.name + " - " + device.address
-                Log.e("vaca", "device: $derp")
+                if(device.name.startsWith("Check")==false){
+                    return
+                }
+                if (deviceType == BluetoothDevice.DEVICE_TYPE_CLASSIC) {
+                    Log.e("vaca", "CLASSIC device: $derp")
+                } else if (deviceType ==  BluetoothDevice.DEVICE_TYPE_LE) {
+                    Log.e("vaca", "LE device: $derp")
+                } else if (deviceType == BluetoothDevice.DEVICE_TYPE_DUAL) {
+                    Log.e("vaca", "DUAL device: $derp")
+                }
+
+
             }
         }
     }
