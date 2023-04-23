@@ -84,8 +84,10 @@ class MainActivity : AppCompatActivity() {
                 if (device!!.name.isNullOrEmpty()) {
                     return
                 }
+                val rssi =
+                    intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE).toInt()
                 val deviceType = device.type
-                val derp = device.name + " - " + device.address
+                val derp = device.name + " - " + device.address+" - "+rssi
                 if(device.name.startsWith("Check")==false){
                     return
                 }
