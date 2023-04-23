@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity() {
         if (mBluetoothAdapter.isDiscovering) {
             mBluetoothAdapter.cancelDiscovery()
         }
+        // it only scans for 12 seconds
         mBluetoothAdapter.startDiscovery()
         val mReceiver = SingBroadcastReceiver()
         val ifilter = IntentFilter(BluetoothDevice.ACTION_FOUND)
@@ -97,6 +98,8 @@ class MainActivity : AppCompatActivity() {
                     Log.e("vaca", "LE device: $derp")
                 } else if (deviceType == BluetoothDevice.DEVICE_TYPE_DUAL) {
                     Log.e("vaca", "DUAL device: $derp")
+                }else if (deviceType == BluetoothDevice.DEVICE_TYPE_UNKNOWN) {
+                    Log.e("vaca", "UNKNOWN device: $derp")
                 }
 
 
